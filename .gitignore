@@ -1,0 +1,7 @@
+dist
+node_modules
+.cache
+storybook-static
+.env
+.idea
+build
