@@ -10,7 +10,9 @@ script.src = `${WEBCOMPONENTS_ROOT}webcomponents-loader.js`;
 document.head.appendChild(script);
 
 if (WebComponents.ready) {
-  require("./src/become-button");
+  require("./src/become-reverification-button");
 } else {
-  addEventListener("WebComponentsReady", () => require("./src/become-button"));
+  addEventListener("WebComponentsReady", () =>
+    require("./src/become-reverification-button")
+  );
 }
