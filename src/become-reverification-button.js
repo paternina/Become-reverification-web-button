@@ -50,7 +50,7 @@ export default class BecomeReverificationButton extends LitElement {
     this.disabled = true;
     this.loading = true;
     this.apiHost = "https://api.become.com";
-    this.signupHost = "https://onboarding.becomedigital.net/";
+    this.signupHost = "https://onboarding-demo2.becomedigital.net/";
     [this.language] = navigator.language.split("-");
     this.metadata = null;
 
