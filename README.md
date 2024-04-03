@@ -61,6 +61,52 @@ You can also subscribe to the events that the button emits to let you know about
 | become:userFinishedSdk     | Successful completion of the re-verfication process |
 | become:exitedSdk           | User exited the process manually                    |
 
+When the event `userFinishedSdk` is collect, you will receive a collection as the below:
+
+```json
+{
+  "AuditImages": [
+    {
+      "BoundingBox": {
+        "Height": 283.93048095703125,
+        "Left": 218.52137756347656,
+        "Top": 105.67168426513672,
+        "Width": 193.6444854736328
+      },
+      "Bytes": ""
+    }
+  ],
+  "Confidence": 99.91615295410156,
+  "ReferenceImage": {
+    "BoundingBox": {
+      "Height": 287.81195068359375,
+      "Left": 206.05030822753906,
+      "Top": 76.31394958496094,
+      "Width": 201.10231018066406
+    },
+    "Bytes": ""
+  },
+  "ResponseMetadata": {
+    "HTTPHeaders": {
+      "content-length": "73089",
+      "content-type": "application/x-amz-json-1.1",
+      "date": "Wed, 03 Apr 2024 21:07:33 GMT",
+      "x-amzn-requestid": "2df06a47-acab-49cd-9bb8-f26d7b9231a8"
+    },
+    "HTTPStatusCode": 200,
+    "RequestId": "2df06a47-acab-49cd-9bb8-f26d7b9231a8",
+    "RetryAttempts": 0
+  },
+  "SessionId": "b996bce1-0750-4ec3-8a0d-bea94812b6a1",
+  "Status": "SUCCEEDED"
+}
+```
+
+- `Confidence` is the percentage of liveness for the user
+- `AuditImages.Bytes` and `ReferenceImage.Bytes` are images in Base64
+
 ### Example
 
-- Vanilla JS: see `index.html`
+- Minimal usage:
+  - Vanilla JS: see `index.html`
+- Using the Image to call re-verfication API `examples/index.js`
