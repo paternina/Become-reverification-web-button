@@ -61,7 +61,7 @@ You can also subscribe to the events that the button emits to let you know about
 | become:userFinishedSdk     | Successful completion of the re-verfication process |
 | become:exitedSdk           | User exited the process manually                    |
 
-When the event `userFinishedSdk` is collect, you will receive a collection as the below:
+When the event `userFinishedSdk` is triggered, you will receive a collection as the below:
 
 ```json
 {
