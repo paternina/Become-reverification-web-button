@@ -6,7 +6,8 @@
   "module": "main.js",
   "scripts": {
     "build": "webpack",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "buildn18": "set NODE_OPTIONS=--openssl-legacy-provider && webpack"
   },
   "author": "",
   "license": "ISC",
