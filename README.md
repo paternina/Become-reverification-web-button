@@ -99,6 +99,7 @@ When the event `result` is triggered, you will receive a collection as the below
 
 - `Confidence` is the percentage of liveness for the user
 - `AuditImages.Bytes` and `ReferenceImage.Bytes` are images in Base64
+- `data` is the response returned from our service that tells if the user is who he said he is
 
 ### Example
 
