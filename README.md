@@ -68,7 +68,7 @@ When the event `result` is triggered, you will receive a collection as the below
 {
   "userId": "test_1",
   "livenessConficence": 99.91615295410156,
-  "AuditImages": [
+  "auditImages": [
     {
       "BoundingBox": {
         "Height": 283.93048095703125,
@@ -79,7 +79,7 @@ When the event `result` is triggered, you will receive a collection as the below
       "Bytes": ""
     }
   ],
-  "ReferenceImage": {
+  "referenceImage": {
     "BoundingBox": {
       "Height": 287.81195068359375,
       "Left": 206.05030822753906,
