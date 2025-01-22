@@ -1,4 +1,4 @@
-## Integrate [Become Re-Verefication service](https://becomedigital.net/) to your website with Become web button
+## Integrate [Become Re-Verefication service](https://becomedigital.net/) to your website with Become reverification web button
 
 How it looks like in your code:
 
