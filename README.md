@@ -93,7 +93,9 @@ When the `result` event is triggered, the following data is returned:
     "company": "<YOUR_COMPANY_ACCOUNT_NAME>",
     "user_id": "<USER_ID>",
     "result": false,
-    "confidence": 0.20414
+    "confidence": 0.20414,
+    "liveness": 99.91615295410156,
+    "executionId": "UUID",
   }
 }
 ```
@@ -121,6 +123,7 @@ Note:
 | userId | String | The user ID of the individual (same as provided). |
 | result | Boolean | Indicates whether the user passed re-verification. `true` means the user is verified; `false` means they are not. |
 | confidence | Number (Decimal) | The comparison score between the sent selfie and the one attached to the userId. You can use this value for custom logic if needed, based on your business rules. |
+| executionId | UUID (String) | The unique identifier for this transaction. |
 
 
 ### Example
