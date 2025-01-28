@@ -32,14 +32,35 @@ Use and declare the `userId`, `contractId`, and `token` in the custom element:
 />
 ```
 *Note*: You can also create the button dynamically using JavaScript. Use the `createElement` method, and then apply `setAttribute` to define the attributes. You can also handle or simulate a `click event` to control whether or not to display the button on your page.
-
-### API
+```js
+const button = document.createElement('become-reverification-button');
+button.setAttribute('userId', 'user_12345');
+button.setAttribute('contractId', 'contract_67890');
+button.setAttribute('token', 'your_jwt_token_here');
+document.body.appendChild(button);
+```
+### API Reference
 
 ### Re-verification
 
 Once a user has completed the onboarding process, they will be able to authenticate using facial biometrics and proof of life (liveness detection), without needing to present their identity document again.
 
 - [Reverification API](https://documenter.getpostman.com/view/2293906/T1DtdvBk?version=latest#06c03291-3e2f-4f66-bf6d-a7bf179d17df)
+
+### executionId
+
+When the re-verification process is initiated, the API generated a unique executionId to identify the transaction. This value can be used in two ways:
+
+- Immediate Use: The verification results can be processed immediately after receiving the executionId.
+- Future Query: The executionId can be stored for use at any point in the process, allowing the results to be queried later.
+
+To obtain the results using the executionId, use the following endpoint:
+
+`POST https://api.svi.becomedigital.net/api/v1/matches/check`
+
+For more details about this endpoint and the result format, refer to the [official API documentation](https://documenter.getpostman.com/view/2293906/T1DtdvBk#b37dbd40-dd87-4e63-b2fa-50ceee68d952).
+
+For more information about where to find this key please refer to `result` table below.
 
 #### Button attributes
 
@@ -48,8 +69,6 @@ Once a user has completed the onboarding process, they will be able to authentic
 | `userId`       | The custom unique identifier assigned during the previous validation process.                      |
 | `contractId`   | Contract identifier for validation type                                                  |
 | `token`        | The JWT token generated for API requests, created using company credentials. |
-| `country`      | 2 characters country identifier (default: "CO" - Colombia) Example of use: "FR" (France) |
-| `state`        | 2 charactes state identifier (only available for US states when country is "US"          |
 
 #### Events
 
@@ -63,12 +82,28 @@ You can subscribe to events emitted by the button to track the re-verification p
 | become:userFinishedSdk     | Notifies that the user clicked the continue button to close the SDK. Only emmited when the verification proccess is OK                  |
 | become:exitedSdk           | Indicates that the user exited the process manually using the close button. Here users may complete the proccess or not              |
 
+```js
+document.querySelector('become-reverification-button').addEventListener('become:result', (event) => {
+    console.log('Resultado de la re-verificación:', event.detail);
+});
+/* or
+ const btn = document.querySelector('become-reverification-button');
+ btn.addEventListener('become:result', (event) => {
+ // handle your next step or bussiness logic;
+  console.log('Resultado de la re-verificación:', event.detail);
+ });
+ btn.addEventListener('become:userFinishedSdk', (event) => {
+  // handle your next step or bussiness logic;
+ });
+*/
+```
+
 When the `result` event is triggered, the following data is returned:
 
 ```json
 {
   "userId": "test_1",
-  "livenessConficence": 99.91615295410156,
+  "livenessConfidence": 99.91615295410156,
   "auditImages": [
     {
       "BoundingBox": {
@@ -99,12 +134,11 @@ When the `result` event is triggered, the following data is returned:
   }
 }
 ```
-
 ## Result Object
 
 | Key        | Type             | Description                                                                                                                         |
 | ---------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| livenessConficence | Number (Decimal) | The percentage of confidence in the user's liveness during the challenge. If the score is >= 75, it indicates the user is likely a real person (not necessarily that the user is who they claim to be). |
+| livenessConfidence | Number (Decimal) | The percentage of confidence in the user's liveness during the challenge. If the score is >= 75, it indicates the user is likely a real person (not necessarily that the user is who they claim to be). |
 | auditImages | Array | An array containing the images used as base images for liveness verification. |
 | referenceImage | Object | The reference image used to compare and verify if the user is live. |
 | data | Object | The result of the comparison between the most recent selfie and the one attached to the userId. |
@@ -125,7 +159,6 @@ Note:
 | result | Boolean | Indicates whether the user passed re-verification. `true` means the user is verified; `false` means they are not. |
 | confidence | Number (Decimal) | The comparison score between the sent selfie and the one attached to the userId. You can use this value for custom logic if needed, based on your business rules. |
 | executionId | UUID (String) | The unique identifier for this transaction. |
-
 
 ### Example
 
