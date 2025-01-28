@@ -119,8 +119,9 @@ Note:
 
 | Key        | Type             | Description                                                                                                                         |
 | ---------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| comapnyId | String | The company ID from where the user was  onboarded (your company). |
-| userId | String | The user ID of the individual (same as provided). |
+| company | String | The company from where the user was  onboarded (your company). |
+| user_id | String | The user ID of the individual (same as provided). |
+| liveness | Number (Decimal) | The percentage of confidence in the user's liveness during the challenge. If the score is >= 75, it indicates the user is likely a real person (not necessarily that the user is who they claim to be). |
 | result | Boolean | Indicates whether the user passed re-verification. `true` means the user is verified; `false` means they are not. |
 | confidence | Number (Decimal) | The comparison score between the sent selfie and the one attached to the userId. You can use this value for custom logic if needed, based on your business rules. |
 | executionId | UUID (String) | The unique identifier for this transaction. |
