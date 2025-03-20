@@ -49,7 +49,7 @@ export default class BecomeReverificationButton extends LitElement {
     super();
     this.disabled = true;
     this.loading = true;
-    this.apiHost = "https://api.become.com";
+    this.apiHost = "https://api.svi.becomedigital.net";
     this.signupHost = "https://reverification.svi.becomedigital.net";
     [this.language] = navigator.language.split("-");
     this.metadata = null;
@@ -132,10 +132,10 @@ export default class BecomeReverificationButton extends LitElement {
   }
 
   async firstUpdated() {
-    const api = `${this.apiHost}/api/v1/merchants/me`;
-    const headers = {
-      authorization: `Bearer ${this.clientId}`,
-    };
+   // const api = `${this.apiHost}/api/v1/merchants/me`;
+    // const headers = {
+    //   authorization: `Bearer ${this.clientId}`,
+    // };
     try {
       /*const response = await fetch(api, { headers });
       const {
